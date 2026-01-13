@@ -1,14 +1,17 @@
 class Solution {
 public:
-    int findDuplicate(vector<int>& arr) {
-        int i = 0;
-        while (true) {  // Traverse arr[ele] and mark the respective visited indices as -ve
-        // Now if you find an ele as marked -ve then return the index
-        i = abs(arr[i]);
-        if (arr[i] < 0) {
-            return i;
+    int findDuplicate(vector<int>& nums) {
+        int ind = 0;
+        int n = nums.size();
+        for(int i = 0; i < n; i++)
+        {
+            ind = abs(nums[i]);
+
+            if(nums[ind] < 0)
+                return ind;
+
+            nums[ind] = -nums[ind];
         }
-        arr[i] = -1 * arr[i];  // Else keep on traversing until you find one
-        }
+        return -1;
     }
 };
